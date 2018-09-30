@@ -1,0 +1,6 @@
+framework module Pods_AutoSquadron {
+  umbrella header "Pods-AutoSquadron-umbrella.h"
+
+  export *
+  module * { export * }
+}
