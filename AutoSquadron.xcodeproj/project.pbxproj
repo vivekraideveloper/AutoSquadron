@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		804E768421613923005B5133 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804E768321613922005B5133 /* GoogleService-Info.plist */; };
 		804E768621613A8C005B5133 /* HomeOfferLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E768521613A8C005B5133 /* HomeOfferLayout.swift */; };
+		804E7688216173CA005B5133 /* NearMeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E7687216173CA005B5133 /* NearMeVC.swift */; };
+		804E768A216173F3005B5133 /* WorkShopsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E7689216173F3005B5133 /* WorkShopsVC.swift */; };
+		804E768E2161850D005B5133 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804E768D2161850D005B5133 /* MapKit.framework */; };
+		804E76B0216249F2005B5133 /* ServiceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E76AF216249F2005B5133 /* ServiceAnnotationView.swift */; };
 		807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807F68B621542DF600321617 /* CustomImageFlowLayout.swift */; };
 		80CE2FEE214D9BD6009B3F45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE2FED214D9BD6009B3F45 /* AppDelegate.swift */; };
 		80CE2FF0214D9BD6009B3F45 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE2FEF214D9BD6009B3F45 /* HomeVC.swift */; };
@@ -26,6 +30,10 @@
 		7D01ADF625B5DB22E5C727D3 /* Pods-AutoSquadron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoSquadron.release.xcconfig"; path = "Pods/Target Support Files/Pods-AutoSquadron/Pods-AutoSquadron.release.xcconfig"; sourceTree = "<group>"; };
 		804E768321613922005B5133 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		804E768521613A8C005B5133 /* HomeOfferLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOfferLayout.swift; sourceTree = "<group>"; };
+		804E7687216173CA005B5133 /* NearMeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeVC.swift; sourceTree = "<group>"; };
+		804E7689216173F3005B5133 /* WorkShopsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkShopsVC.swift; sourceTree = "<group>"; };
+		804E768D2161850D005B5133 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		804E76AF216249F2005B5133 /* ServiceAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAnnotationView.swift; sourceTree = "<group>"; };
 		807F68B621542DF600321617 /* CustomImageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageFlowLayout.swift; sourceTree = "<group>"; };
 		80CE2FEA214D9BD5009B3F45 /* AutoSquadron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSquadron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CE2FED214D9BD6009B3F45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				804E768E2161850D005B5133 /* MapKit.framework in Frameworks */,
 				E81286FAF13FA1BEE29A2657 /* Pods_AutoSquadron.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +64,7 @@
 		801DD9E847B5A4334E8D84D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				804E768D2161850D005B5133 /* MapKit.framework */,
 				DFB84DECC37AF8188159C7E6 /* Pods_AutoSquadron.framework */,
 			);
 			name = Frameworks;
@@ -108,6 +118,7 @@
 				80CE3006214DB500009B3F45 /* HomeCell.swift */,
 				807F68B621542DF600321617 /* CustomImageFlowLayout.swift */,
 				804E768521613A8C005B5133 /* HomeOfferLayout.swift */,
+				804E76AF216249F2005B5133 /* ServiceAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,6 +128,8 @@
 			children = (
 				80CE2FF1214D9BD6009B3F45 /* ProfileVC.swift */,
 				80CE2FEF214D9BD6009B3F45 /* HomeVC.swift */,
+				804E7687216173CA005B5133 /* NearMeVC.swift */,
+				804E7689216173F3005B5133 /* WorkShopsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -164,6 +177,11 @@
 				TargetAttributes = {
 					80CE2FE9214D9BD5009B3F45 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -255,11 +273,14 @@
 			files = (
 				807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */,
 				804E768621613A8C005B5133 /* HomeOfferLayout.swift in Sources */,
+				804E7688216173CA005B5133 /* NearMeVC.swift in Sources */,
 				80CE2FF2214D9BD6009B3F45 /* ProfileVC.swift in Sources */,
 				80CE3005214DA658009B3F45 /* HomeView.swift in Sources */,
 				80CE2FEE214D9BD6009B3F45 /* AppDelegate.swift in Sources */,
 				80CE2FF0214D9BD6009B3F45 /* HomeVC.swift in Sources */,
+				804E76B0216249F2005B5133 /* ServiceAnnotationView.swift in Sources */,
 				80CE3007214DB500009B3F45 /* HomeCell.swift in Sources */,
+				804E768A216173F3005B5133 /* WorkShopsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

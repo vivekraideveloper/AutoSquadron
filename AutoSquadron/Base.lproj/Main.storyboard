@@ -188,39 +188,75 @@
         <!--NearMe-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="ProfileVC" customModule="AutoSquadron" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="NearMeVC" customModule="AutoSquadron" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="106" y="346.66666666666669" width="202" height="43"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="99" y="397.66666666666669" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fSD-X8-HnA">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                            </mapView>
+                            <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" placeholder="Search Service Stations" translatesAutoresizingMaskIntoConstraints="NO" id="J3w-YO-fdE">
+                                <rect key="frame" x="0.0" y="17" width="414" height="56"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WiG-wp-cY6">
+                                <rect key="frame" x="337" y="608" width="67" height="67"/>
+                                <state key="normal" image="locationButton"/>
+                                <connections>
+                                    <action selector="centreLocationButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="1UA-EP-dpZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpv-S5-D9I">
+                                <rect key="frame" x="261" y="611" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="AF7-6g-mf1"/>
+                                    <constraint firstAttribute="height" constant="60" id="SuS-eo-eit"/>
+                                </constraints>
+                                <state key="normal" image="mapRepair"/>
+                                <connections>
+                                    <action selector="locateServiceStation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="xVC-xq-RC2"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Pdd-6b-nks">
+                                <rect key="frame" x="20" y="627" width="191" height="29"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.79956004859999996" blue="0.29176594119999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="Vpv-S5-D9I" secondAttribute="bottom" constant="16" id="0ZZ-03-ceb"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="Pdd-6b-nks" secondAttribute="bottom" constant="32" id="FRY-eF-Phn"/>
+                            <constraint firstItem="Pdd-6b-nks" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="20" id="Hlq-UG-eTR"/>
+                            <constraint firstItem="WiG-wp-cY6" firstAttribute="leading" secondItem="Vpv-S5-D9I" secondAttribute="trailing" constant="16" id="LRq-nj-8AA"/>
+                            <constraint firstItem="fSD-X8-HnA" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="RIA-SW-IuQ"/>
+                            <constraint firstItem="J3w-YO-fdE" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="SdC-Nd-nz4"/>
+                            <constraint firstItem="J3w-YO-fdE" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="UR9-YK-p8q"/>
+                            <constraint firstItem="J3w-YO-fdE" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="17" id="VMN-00-GHE"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="WiG-wp-cY6" secondAttribute="trailing" constant="10" id="got-6X-vgQ"/>
+                            <constraint firstItem="fSD-X8-HnA" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="hbw-ma-QJ4"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="WiG-wp-cY6" secondAttribute="bottom" constant="12" id="vJq-K7-p1O"/>
+                            <constraint firstItem="fSD-X8-HnA" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="zad-va-n3x"/>
+                            <constraint firstItem="fSD-X8-HnA" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="zoO-1a-uMG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="NearMe" image="nearMeIcon" selectedImage="nearMeIcon" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="mapSegmentedControl" destination="Pdd-6b-nks" id="HFW-m7-Nlg"/>
+                        <outlet property="mapView" destination="fSD-X8-HnA" id="Kw9-aE-5ib"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="749.27536231884062" y="359.51086956521743"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -231,7 +267,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.79956004859999996" blue="0.29176594119999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -248,6 +284,8 @@
     </scenes>
     <resources>
         <image name="homeIcon" width="36" height="36"/>
+        <image name="locationButton" width="67" height="67"/>
+        <image name="mapRepair" width="512" height="512"/>
         <image name="moreIcon" width="36" height="36"/>
         <image name="nearMeIcon" width="36" height="36"/>
         <image name="profileIcon" width="36" height="36"/>
