@@ -9,4 +9,5 @@ target 'AutoSquadron' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'SDWebImage/WebP'
+    pod 'EnhancedCircleImageView'
 end

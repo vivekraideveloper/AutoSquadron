@@ -13,6 +13,8 @@
 		804E768A216173F3005B5133 /* WorkShopsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E7689216173F3005B5133 /* WorkShopsVC.swift */; };
 		804E768E2161850D005B5133 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804E768D2161850D005B5133 /* MapKit.framework */; };
 		804E76B0216249F2005B5133 /* ServiceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E76AF216249F2005B5133 /* ServiceAnnotationView.swift */; };
+		804E76B22162E3AF005B5133 /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E76B12162E3AF005B5133 /* AccountVC.swift */; };
+		804E76D821637E28005B5133 /* AccountCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E76D721637E28005B5133 /* AccountCellVC.swift */; };
 		807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807F68B621542DF600321617 /* CustomImageFlowLayout.swift */; };
 		80CE2FEE214D9BD6009B3F45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE2FED214D9BD6009B3F45 /* AppDelegate.swift */; };
 		80CE2FF0214D9BD6009B3F45 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE2FEF214D9BD6009B3F45 /* HomeVC.swift */; };
@@ -34,6 +36,8 @@
 		804E7689216173F3005B5133 /* WorkShopsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkShopsVC.swift; sourceTree = "<group>"; };
 		804E768D2161850D005B5133 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		804E76AF216249F2005B5133 /* ServiceAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAnnotationView.swift; sourceTree = "<group>"; };
+		804E76B12162E3AF005B5133 /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
+		804E76D721637E28005B5133 /* AccountCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCellVC.swift; sourceTree = "<group>"; };
 		807F68B621542DF600321617 /* CustomImageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageFlowLayout.swift; sourceTree = "<group>"; };
 		80CE2FEA214D9BD5009B3F45 /* AutoSquadron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSquadron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CE2FED214D9BD6009B3F45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				807F68B621542DF600321617 /* CustomImageFlowLayout.swift */,
 				804E768521613A8C005B5133 /* HomeOfferLayout.swift */,
 				804E76AF216249F2005B5133 /* ServiceAnnotationView.swift */,
+				804E76D721637E28005B5133 /* AccountCellVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 				80CE2FEF214D9BD6009B3F45 /* HomeVC.swift */,
 				804E7687216173CA005B5133 /* NearMeVC.swift */,
 				804E7689216173F3005B5133 /* WorkShopsVC.swift */,
+				804E76B12162E3AF005B5133 /* AccountVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AutoSquadron/Pods-AutoSquadron-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/EnhancedCircleImageView/EnhancedCircleImageView.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -252,6 +259,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EnhancedCircleImageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -271,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				804E76B22162E3AF005B5133 /* AccountVC.swift in Sources */,
 				807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */,
 				804E768621613A8C005B5133 /* HomeOfferLayout.swift in Sources */,
 				804E7688216173CA005B5133 /* NearMeVC.swift in Sources */,
@@ -278,6 +287,7 @@
 				80CE3005214DA658009B3F45 /* HomeView.swift in Sources */,
 				80CE2FEE214D9BD6009B3F45 /* AppDelegate.swift in Sources */,
 				80CE2FF0214D9BD6009B3F45 /* HomeVC.swift in Sources */,
+				804E76D821637E28005B5133 /* AccountCellVC.swift in Sources */,
 				804E76B0216249F2005B5133 /* ServiceAnnotationView.swift in Sources */,
 				80CE3007214DB500009B3F45 /* HomeCell.swift in Sources */,
 				804E768A216173F3005B5133 /* WorkShopsVC.swift in Sources */,

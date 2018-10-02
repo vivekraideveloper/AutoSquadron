@@ -1,4 +1,5 @@
 PODS:
+  - EnhancedCircleImageView (0.1)
   - Firebase/Auth (5.7.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.3)
@@ -92,6 +93,7 @@ PODS:
     - SDWebImage/Core
 
 DEPENDENCIES:
+  - EnhancedCircleImageView
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -99,6 +101,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - EnhancedCircleImageView
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -115,6 +118,7 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
+  EnhancedCircleImageView: 1069bbc14526d89502cc0e48b45f5da6a3317a47
   Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
   FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
   FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
@@ -130,6 +134,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 89de594899e739f838cd2f11a158e4e1f4d33c25
+PODFILE CHECKSUM: e7500543c636a715fb56dde04e4272d5e6f4fde4
 
 COCOAPODS: 1.5.3
