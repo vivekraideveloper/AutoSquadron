@@ -10,4 +10,5 @@ target 'AutoSquadron' do
     pod 'Firebase/Database'
     pod 'SDWebImage/WebP'
     pod 'EnhancedCircleImageView'
+    pod 'Kingfisher'
 end
