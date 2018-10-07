@@ -19,6 +19,7 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var workshopData = [WorkshopsLayout]()
     
     let images = ["1","2","3", "1","2","3"]
+    
     let workshopNames = ["Zyro Cars", "GoBumper", "Energic Car Wash", "Zyro Cars", "GoBumper", "Energic Car Wash"]
     let workshopDescription = ["Sample deal for paints", "Sample deal for repair", "Sample deal for wash", "Sample deal for paints", "Sample deal for repair", "Sample deal for wash"]
     
@@ -29,7 +30,6 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         workshopTableView.separatorStyle = .singleLine
         workshopTableView.separatorColor = UIColor.black
-        workshopTableView.allowsSelection = false
         
         databaseReference = Database.database().reference().child("workshops")
         
@@ -70,7 +70,8 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         cell.imageView?.contentMode = .scaleAspectFit
 //      cell.imageView?.kf.setImage(with: data.imageUrl as! Resource)
         
-        
+//        var serviceData = workshopData[indexPath.row].services
+//        print(ser)
         
         
         cell.workshopName.text = data.name
@@ -79,5 +80,29 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "workshop", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "workshop"{
+            let destinationVC = segue.destination as! WorkshopDetailVC
+            destinationVC._workshopName = workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].name
+            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img1)
+            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img2)
+            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img3)
+            
+            for (key, value) in workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].services{
+                destinationVC.serviceNameArray.append(key)
+                print(key)
+                destinationVC.servicePriceArray.append(value)
+                print(value)
+            }
+            
+        }
+    }
+    
+   
 
 }

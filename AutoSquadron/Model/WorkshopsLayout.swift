@@ -15,15 +15,23 @@ class WorkshopsLayout {
     
     var name: String!
     var imageUrl: String!
+    var img1: String!
+    var img2: String!
+    var img3: String!
+    var services: [String: String]!
     var shortDesc: String!
     
     var itemRef: DatabaseReference?
     
-    init(name: String, imageUrl: String, shortDesc: String, key: String) {
+    init(name: String, imageUrl: String, shortDesc: String, key: String, img1: String, img2: String, img3: String, services: Dictionary<String, String>) {
         self.name = name
         self.imageUrl = imageUrl
         self.shortDesc = shortDesc
         self.key = key
+        self.img1 = img1
+        self.img2 = img2
+        self.img3 = img3
+        self.services = services
         self.itemRef = nil
     }
     
@@ -51,6 +59,28 @@ class WorkshopsLayout {
             shortDesc = sDesc
         }else{
             shortDesc = ""
+        }
+        if let image1 = snapshotValue?["img1"] as? String{
+            img1 = image1
+        }else{
+            img1 = ""
+        }
+        if let image2 = snapshotValue?["img2"] as? String{
+            img2 = image2
+        }else{
+            img2 = ""
+        }
+        if let image3 = snapshotValue?["img3"] as? String{
+            img3 = image3
+        }else{
+            img3 = ""
+        }
+        
+        if let servicesDictionary = snapshotValue?["services"] as? Dictionary<String, String>{
+            services = servicesDictionary
+        }else{
+            services = [:]
+            
         }
     }
     

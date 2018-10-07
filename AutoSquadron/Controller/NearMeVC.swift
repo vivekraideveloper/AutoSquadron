@@ -62,6 +62,7 @@ class NearMeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             centerMapOnUserLocation()
         }
+        print("Centred!")
 
     }
     
