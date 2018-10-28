@@ -15,6 +15,7 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     @IBOutlet weak var workshopTableView: UITableView!
     
+    
     var databaseReference: DatabaseReference!
     var workshopData = [WorkshopsLayout]()
     
@@ -31,11 +32,14 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         workshopTableView.separatorStyle = .singleLine
         workshopTableView.separatorColor = UIColor.black
         
+        
         databaseReference = Database.database().reference().child("workshops")
         
         loadWorkshops()
+        
 
     }
+   
     
     func loadWorkshops() {
         databaseReference.observe(DataEventType.value, with: { (snapshot) in
@@ -60,20 +64,12 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = workshopTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WorkShopCell
         
-        cell.imageView?.image = UIImage(named: images[indexPath.row])
-        cell.workshopName.text = workshopNames[indexPath.row]
-        cell.workshopDesc.text = workshopDescription[indexPath.row]
+//        cell.imageView?.image = UIImage(named: images[indexPath.row])
+//        cell.workshopName.text = workshopNames[indexPath.row]
+//        cell.workshopDesc.text = workshopDescription[indexPath.row]
         
         let data = workshopData[indexPath.row]
         cell.imageView?.sd_setImage(with: URL(string: data.imageUrl))
-        
-        cell.imageView?.contentMode = .scaleAspectFit
-//      cell.imageView?.kf.setImage(with: data.imageUrl as! Resource)
-        
-//        var serviceData = workshopData[indexPath.row].services
-//        print(ser)
-        
-        
         cell.workshopName.text = data.name
         cell.workshopDesc.text = data.shortDesc
         return cell

@@ -10,6 +10,8 @@ import UIKit
 
 class CustomImageFlowLayout: UICollectionViewFlowLayout {
     
+    var homeServiceItemArray = [HomeServiceLayout]()
+    
     override init() {
         super.init()
         setUpLayout()
@@ -24,7 +26,7 @@ class CustomImageFlowLayout: UICollectionViewFlowLayout {
         set{}
         
         get{
-            let numberOfColumns: CGFloat = 2
+            let numberOfColumns: CGFloat = CGFloat(homeServiceItemArray.count)
             let itemWidth =  ((self.collectionView?.frame.width)! - (numberOfColumns-1)) / numberOfColumns
             return CGSize(width: itemWidth, height: 100)
             

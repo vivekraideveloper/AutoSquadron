@@ -13,6 +13,7 @@ class WorkShopCell: UITableViewCell {
     @IBOutlet weak var workshopImage: UIImageView!
     @IBOutlet weak var workshopName: UILabel!
     @IBOutlet weak var workshopDesc: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
