@@ -11,48 +11,77 @@ import Firebase
 
 class HomeWorkshopsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
     @IBOutlet weak var workshopTableView: UITableView!
-    var databaseReference: DatabaseReference!
-    var workshopData = [WorkshopsLayout]()
-    var serviceType: String = ""
-    
     @IBOutlet weak var serviceTypeName: UILabel!
     
-//    var images = ["1","2","3","1","2","3"]
-//    var workshopNames = ["Zyro Cars", "GoBumper", "Energic Car Wash", "Zyro Cars", "GoBumper", "Energic Car Wash"]
-//    var workshopDescription = ["Sample deal for paints", "Sample deal for repair", "Sample deal for wash", "Sample deal for paints", "Sample deal                 for repair", "Sample deal for wash"]
-    
-    var images = [String]()
-    var workshopNames = [String]()
-    var workshopDescription = [String]()
-
+    var databaseReference: DatabaseReference!
+    var workshopData = [WorkshopModel]()
+    var reference: String!
+    var serviceName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         workshopTableView.delegate = self
         workshopTableView.dataSource = self
-        serviceTypeName.text = serviceType
-
+        workshopTableView.separatorStyle = .singleLine
+        workshopTableView.separatorColor = UIColor.black
+        databaseReference = Database.database().reference().child(reference)
+        loadWorkshops()
+        serviceTypeName.text = serviceName
     }
     
     
+    func loadWorkshops() {
+        databaseReference.observe(DataEventType.childAdded, with: { (snapshot) in
+            if let dict = snapshot.value as? [String: Any]{
+                let name = dict["name"] as! String
+                let imageUrl = dict["imageUrl"] as! String
+                let img1 = dict["img1"] as! String
+                let img2 = dict["img2"] as! String
+                let img3 = dict["img3"] as! String
+                let shortDesc = dict["shortDesc"] as! String
+                let services = dict["services"] as! Dictionary<String, String>
+                let data = WorkshopModel(name: name, imageUrl: imageUrl, img1: img1, img2: img2, img3: img3, shortDesc: shortDesc, services: services)
+                self.workshopData.append(data)
+                self.workshopTableView.reloadData()
+            }
+        })
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return workshopData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     
         let cell = workshopTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeWorkshpCell
-        cell.workshopImageView?.sd_setImage(with: URL(string: images[indexPath.row]))
-//        cell.workshopImageView.image = UIImage(named: images[indexPath.row])
-        cell.name.text = workshopNames[indexPath.row]
-        cell.shortDesc.text = workshopDescription[indexPath.row]
+        
+        let data = workshopData[indexPath.row]
+        cell.imageView?.sd_setImage(with: URL(string: data.imageUrl))
+        cell.name.text = data.name
+        cell.shortDesc.text = data.shortDesc
         return cell
         
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "service", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "service"{
+            let destinationVC = segue.destination as! WorkshopDetailVC
+            destinationVC._workshopName = workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].name
+            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img1)
+            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img2)
+            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img3)
+            for (key, value) in workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].services{
+                destinationVC.serviceNameArray.append(key)
+                destinationVC.servicePriceArray.append(value)
+            }
+        }
+        
+    }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

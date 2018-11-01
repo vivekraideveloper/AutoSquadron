@@ -9,64 +9,46 @@
 import UIKit
 import FirebaseDatabase
 import SDWebImage
-import Kingfisher
 
 class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var workshopTableView: UITableView!
-    
-    
-    var databaseReference: DatabaseReference!
-    var workshopData = [WorkshopsLayout]()
-    
-    let images = ["1","2","3", "1","2","3"]
-    
-    let workshopNames = ["Zyro Cars", "GoBumper", "Energic Car Wash", "Zyro Cars", "GoBumper", "Energic Car Wash"]
-    let workshopDescription = ["Sample deal for paints", "Sample deal for repair", "Sample deal for wash", "Sample deal for paints", "Sample deal for repair", "Sample deal for wash"]
+
+    var workshopData = [WorkshopModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         workshopTableView.delegate = self
         workshopTableView.dataSource = self
-        
         workshopTableView.separatorStyle = .singleLine
         workshopTableView.separatorColor = UIColor.black
-        
-        
-        databaseReference = Database.database().reference().child("workshops")
-        
         loadWorkshops()
-        
-
     }
-   
+    
     
     func loadWorkshops() {
-        databaseReference.observe(DataEventType.value, with: { (snapshot) in
-            
-            var newData = [WorkshopsLayout]()
-            
-            for dataSnapshot in snapshot.children{
-                let dataObject = WorkshopsLayout(snapshot: dataSnapshot as! DataSnapshot)
-                newData.append(dataObject)
-                
-            }
-            self.workshopData = newData
-            self.workshopTableView.reloadData()
-        })
+            Database.database().reference().child("workshops").observe(.childAdded, with: { (snapshot) in
+                if let dict = snapshot.value as? [String: Any]{
+                    let name = dict["name"] as! String
+                    let imageUrl = dict["imageUrl"] as! String
+                    let img1 = dict["img1"] as! String
+                    let img2 = dict["img2"] as! String
+                    let img3 = dict["img3"] as! String
+                    let shortDesc = dict["shortDesc"] as! String
+                    let services = dict["services"] as! Dictionary<String, String>
+                    let data = WorkshopModel(name: name, imageUrl: imageUrl, img1: img1, img2: img2, img3: img3, shortDesc: shortDesc, services: services)
+                    self.workshopData.append(data)
+                    self.workshopTableView.reloadData()
+                }
+            })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return images.count
         return workshopData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = workshopTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WorkShopCell
-        
-//        cell.imageView?.image = UIImage(named: images[indexPath.row])
-//        cell.workshopName.text = workshopNames[indexPath.row]
-//        cell.workshopDesc.text = workshopDescription[indexPath.row]
         
         let data = workshopData[indexPath.row]
         cell.imageView?.sd_setImage(with: URL(string: data.imageUrl))
@@ -81,24 +63,17 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! WorkshopDetailVC
+        destinationVC._workshopName = workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].name
+        destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img1)
+        destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img2)
+        destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img3)
         
-        if segue.identifier == "workshop"{
-            let destinationVC = segue.destination as! WorkshopDetailVC
-            destinationVC._workshopName = workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].name
-            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img1)
-            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img2)
-            destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img3)
-            
-            for (key, value) in workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].services{
-                destinationVC.serviceNameArray.append(key)
-                print(key)
-                destinationVC.servicePriceArray.append(value)
-                print(value)
-            }
-            
+        for (key, value) in workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].services{
+            destinationVC.serviceNameArray.append(key)
+            destinationVC.servicePriceArray.append(value)
         }
+            
     }
     
-   
-
 }

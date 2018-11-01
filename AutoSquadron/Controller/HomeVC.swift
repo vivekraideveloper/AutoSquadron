@@ -13,29 +13,31 @@ import FirebaseDatabase
 import SDWebImage
 
 class HomeVC: UIViewController, UIScrollViewDelegate {
-
-//    @IBOutlet weak var scrollView: UIScrollView!
-//    @IBOutlet weak var pageControl: UIPageControl!
-//    @IBOutlet weak var collectionView: UICollectionView
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var generalServiceCollectionView: UICollectionView!
     @IBOutlet weak var bodyPaintingCollectionView: UICollectionView!
-    
-    
     @IBOutlet weak var pageControl: UIPageControl!
-    var homeServiceItemArray = [HomeServiceLayout]()
     
+    var homeServiceItemArray = [WorkshopsLayout]()
     var customLayout: CustomImageFlowLayout!
     var collectionImages = [HomeOfferLayout]()
     
-    var databaseReference: DatabaseReference!
+    var generalServiceDatabaseReference: DatabaseReference!
+    var bodyPaintingDatabaseReference: DatabaseReference!
     
-//    Workshops
-    var workshDatabaseReference: DatabaseReference!
-    var workshopData = [WorkshopsLayout]()
-
+//    Arrays
+    var genralWorkshopArray = [WorkshopModel]()
+    var bodyPaintingWorkshopArray = [WorkshopModel]()
+    
+//    Variables used to perfrom segue
+    var name: String!
+    var img1: String!
+    var img2: String!
+    var img3: String!
+    var serviceName = [String]()
+    var servicePrice = [String]()
+    
     
     var images = ["1", "2","3"]
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -43,102 +45,60 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        databaseReference = Database.database().reference().child("offerImageUrl")
+        generalServiceDatabaseReference = Database.database().reference().child("genralServiceWorkshops")
+        bodyPaintingDatabaseReference = Database.database().reference().child("bodyPaintingServiceWorkshops")
         
-        
-        workshDatabaseReference = Database.database().reference().child("genralServiceWorkshops")
-        
-        loadWorkshops()
+        loadGeneralWorkshops()
+        loadBodyPaintingWorkshops()
        
-        
         pageControlSwipe()
         
-        loadGeneralService()
-        loadBodyPaintingService()
-        
         customLayout = CustomImageFlowLayout()
-//        collectionView.collectionViewLayout = customLayout
-//        collectionView.backgroundColor = .gray
-        
-
     }
     
-//    func loadCollectionViewImages() {
-//
-//        databaseReference.observe(DataEventType.value, with: { (snapshot) in
-//
-//            var newImages = [HomeOfferLayout]()
-//
-//            for offerSnapshot in snapshot.children{
-//                let offerObject = HomeOfferLayout(snapshot: offerSnapshot as! DataSnapshot)
-//                newImages.append(offerObject)
-//
-//            }
-//            self.collectionImages = newImages
-//            self.collectionView.reloadData()
-//        })
-//    }
-    
-    
-    
-    func loadWorkshops() {
-        workshDatabaseReference.observe(DataEventType.value, with: { (snapshot) in
-            
-            var newData = [WorkshopsLayout]()
-            
-            for dataSnapshot in snapshot.children{
-                let dataObject = WorkshopsLayout(snapshot: dataSnapshot as! DataSnapshot)
-                newData.append(dataObject)
+    func loadGeneralWorkshops() {
+        generalServiceDatabaseReference.observe(DataEventType.childAdded, with: { (snapshot) in
+            if let dict = snapshot.value as? [String: Any]{
+                let name = dict["name"] as! String
+                let imageUrl = dict["imageUrl"] as! String
+                let img1 = dict["img1"] as! String
+                let img2 = dict["img2"] as! String
+                let img3 = dict["img3"] as! String
+                let shortDesc = dict["shortDesc"] as! String
+                let services = dict["services"] as! Dictionary<String, String>
+                let data = WorkshopModel(name: name, imageUrl: imageUrl, img1: img1, img2: img2, img3: img3, shortDesc: shortDesc, services: services)
+                self.genralWorkshopArray.append(data)
+                self.generalServiceCollectionView.delegate = self
+                self.generalServiceCollectionView.dataSource = self
+                self.generalServiceCollectionView.reloadData()
                 
             }
-            self.workshopData = newData
-            
         })
     }
     
-    
-    func loadGeneralService() {
-        
-        generalServiceCollectionView.delegate = self
-        generalServiceCollectionView.dataSource = self
-        
-        databaseReference.observe(DataEventType.value, with: { (snapshot) in
-
-            var newImages = [HomeServiceLayout]()
-
-            for offerSnapshot in snapshot.children{
-                let offerObject = HomeServiceLayout(snapshot: offerSnapshot as! DataSnapshot)
-                newImages.append(offerObject)
-
-            }
-            self.homeServiceItemArray = newImages
-            self.generalServiceCollectionView.reloadData()
-        })
-    }
-    
-    func loadBodyPaintingService() {
-        
-        bodyPaintingCollectionView.delegate = self
-        bodyPaintingCollectionView.dataSource = self
-        
-        databaseReference.observe(DataEventType.value, with: { (snapshot) in
-            
-            var newImages = [HomeServiceLayout]()
-            
-            for offerSnapshot in snapshot.children{
-                let offerObject = HomeServiceLayout(snapshot: offerSnapshot as! DataSnapshot)
-                newImages.append(offerObject)
+    func loadBodyPaintingWorkshops() {
+        bodyPaintingDatabaseReference.observe(DataEventType.childAdded, with: { (snapshot) in
+            if let dict = snapshot.value as? [String: Any]{
+                let name = dict["name"] as! String
+                let imageUrl = dict["imageUrl"] as! String
+                let img1 = dict["img1"] as! String
+                let img2 = dict["img2"] as! String
+                let img3 = dict["img3"] as! String
+                let shortDesc = dict["shortDesc"] as! String
+                let services = dict["services"] as! Dictionary<String, String>
+                let data = WorkshopModel(name: name, imageUrl: imageUrl, img1: img1, img2: img2, img3: img3, shortDesc: shortDesc, services: services)
+                self.bodyPaintingWorkshopArray.append(data)
+                self.bodyPaintingCollectionView.delegate = self
+                self.bodyPaintingCollectionView.dataSource = self
+                self.bodyPaintingCollectionView.reloadData()
                 
             }
-            self.homeServiceItemArray = newImages
-            self.bodyPaintingCollectionView.reloadData()
         })
     }
+    
     
     func pageControlSwipe() {
-        
         scrollView.layer.cornerRadius = 10
-        
         pageControl.numberOfPages = images.count
         
         for index in 0..<images.count{
@@ -161,48 +121,69 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func generalServiceButtonPressed(_ sender: Any) {
-        
-        performSegue(withIdentifier: "service", sender: self)
+        performSegue(withIdentifier: "generalService", sender: self)
     }
     
     @IBAction func bodyPaintingButtonPressed(_ sender: Any) {
-//        performSegue(withIdentifier: "service", sender: self)
+        performSegue(withIdentifier: "bodyPainitngService", sender: self)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "service"{
-            
+        if segue.identifier == "generalService"{
             let destinationVC = segue.destination as! HomeWorkshopsVC
-            for i in workshopData{
-                destinationVC.serviceType = "General Service"
-                destinationVC.workshopNames.append(i.name)
-                destinationVC.images.append(i.imageUrl)
-                destinationVC.workshopDescription.append(i.shortDesc)
-            }
-            
-            destinationVC.databaseReference = Database.database().reference().child("genralServiceWorkshops")
+            destinationVC.reference = "genralServiceWorkshops"
+            destinationVC.serviceName = "General Service"
+        }
+        
+        if segue.identifier == "bodyPainitngService"{
+            let destinationVC = segue.destination as! HomeWorkshopsVC
+            destinationVC.reference = "bodyPaintingServiceWorkshops"
+            destinationVC.serviceName = "Body Painting"
+        }
+        
+        
+        if segue.identifier == "collectionGeneralService"{
+            let destinationVC = segue.destination as! WorkshopDetailVC
+            destinationVC._workshopName = self.name
+            destinationVC.images.append(img1)
+            destinationVC.images.append(img2)
+            destinationVC.images.append(img3)
+            destinationVC.serviceNameArray = serviceName
+            destinationVC.servicePriceArray = servicePrice
 
         }
 
+        if segue.identifier == "collectionBodyPainitngService"{
+            let destinationVC = segue.destination as! WorkshopDetailVC
+            destinationVC._workshopName = self.name
+            destinationVC.images.append(img1)
+            destinationVC.images.append(img2)
+            destinationVC.images.append(img3)
+            destinationVC.serviceNameArray = serviceName
+            destinationVC.servicePriceArray = servicePrice
+
+        }
     }
-    
-    
-    
-    
     
 }
 
+
+
+
+
+
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return collectionImages.count
+        
         if collectionView == self.generalServiceCollectionView{
-            return homeServiceItemArray.count
+            return genralWorkshopArray.count
         }
         
         if collectionView == self.bodyPaintingCollectionView{
-            return homeServiceItemArray.count
+            return bodyPaintingWorkshopArray.count
         }
         
         return 1
@@ -210,42 +191,56 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-//        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as? HomeCell{
-//            let images = collectionImages[indexPath.row]
-//            cell.imageView.sd_setImage(with: URL(string: images.url), placeholderImage: UIImage(named: "1"))
-//            return cell
-//        }else{
-//            return UICollectionViewCell()
-//        }
         
         if collectionView == self.generalServiceCollectionView{
             let homeServiceCell = generalServiceCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeServiceCell
-            homeServiceCell.serviceImage.sd_setImage(with: URL(string: homeServiceItemArray[indexPath.row].url))
-            homeServiceCell.serviceStationName.text = homeServiceItemArray[indexPath.row].name
+            homeServiceCell.serviceImage.sd_setImage(with: URL(string: genralWorkshopArray[indexPath.row].imageUrl))
+            homeServiceCell.serviceStationName.text = genralWorkshopArray[indexPath.row].name
             return homeServiceCell
         }
         
         if collectionView == self.bodyPaintingCollectionView{
             let paintingServiceCell = bodyPaintingCollectionView.dequeueReusableCell(withReuseIdentifier:"bodyPaintingCell", for: indexPath) as! HomeBodyPaintingCell
-            paintingServiceCell.serviceImage.sd_setImage(with: URL(string: homeServiceItemArray[indexPath.row].url))
-            paintingServiceCell.serviceStationName.text = homeServiceItemArray[indexPath.row].name
+            paintingServiceCell.serviceImage.sd_setImage(with: URL(string: bodyPaintingWorkshopArray[indexPath.row].imageUrl))
+            paintingServiceCell.serviceStationName.text = bodyPaintingWorkshopArray[indexPath.row].name
             return paintingServiceCell
         }
         
         return UICollectionViewCell()
         
-       
-
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-       
+        if collectionView == generalServiceCollectionView{
+            self.name = genralWorkshopArray[indexPath.row].name
+            self.img1 = genralWorkshopArray[indexPath.row].img1
+            self.img2 = genralWorkshopArray[indexPath.row].img2
+            self.img3 = genralWorkshopArray[indexPath.row].img3
+            for (key, value) in genralWorkshopArray[indexPath.row].services{
+                self.serviceName.append(key)
+                self.servicePrice.append(value)
+            }
+            performSegue(withIdentifier: "collectionGeneralService", sender: self)
+            self.serviceName.removeAll()
+            self.servicePrice.removeAll()
+        }
         
+        if collectionView == bodyPaintingCollectionView{
+            self.name = bodyPaintingWorkshopArray[indexPath.row].name
+            self.img1 = bodyPaintingWorkshopArray[indexPath.row].img1
+            self.img2 = bodyPaintingWorkshopArray[indexPath.row].img2
+            self.img3 = bodyPaintingWorkshopArray[indexPath.row].img3
+            for (key, value) in bodyPaintingWorkshopArray[indexPath.row].services{
+                self.serviceName.append(key)
+                self.servicePrice.append(value)
+            }
+            performSegue(withIdentifier: "collectionBodyPainitngService", sender: self)
+            self.serviceName.removeAll()
+            self.servicePrice.removeAll()
+        }
+       
     }
-    
-    
     
 }
 

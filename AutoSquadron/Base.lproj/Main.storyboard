@@ -357,7 +357,10 @@
                         <outlet property="generalServiceCollectionView" destination="KdK-dB-E2Y" id="mq4-ba-Evv"/>
                         <outlet property="pageControl" destination="rw5-rD-P89" id="ds9-EO-aTV"/>
                         <outlet property="scrollView" destination="Ccy-pV-Dap" id="2Ub-xe-LWL"/>
-                        <segue destination="Sze-nh-znF" kind="show" identifier="service" id="V5s-je-R7K"/>
+                        <segue destination="Sze-nh-znF" kind="show" identifier="generalService" id="V5s-je-R7K"/>
+                        <segue destination="Sze-nh-znF" kind="show" identifier="bodyPainitngService" id="U3i-hl-eTS"/>
+                        <segue destination="CzA-i7-dqk" kind="show" identifier="collectionGeneralService" id="eGa-BS-NDb"/>
+                        <segue destination="CzA-i7-dqk" kind="show" identifier="collectionBodyPainitngService" id="Df8-Kd-RCW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -509,7 +512,7 @@
                                     <constraint firstAttribute="height" constant="40" id="psJ-25-WbL"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="back2"/>
+                                <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="Sze-nh-znF" eventType="touchUpInside" id="y59-O0-cbC"/>
                                 </connections>
@@ -593,6 +596,7 @@
                     <connections>
                         <outlet property="serviceTypeName" destination="jS2-W5-wIC" id="Fjv-Zb-Mga"/>
                         <outlet property="workshopTableView" destination="jTe-fC-CF2" id="5Cq-Dm-10j"/>
+                        <segue destination="CzA-i7-dqk" kind="show" identifier="service" id="9j2-Pn-gZB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="asU-Vt-LR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1008,7 +1012,6 @@
         <image name="accountAbout" width="24" height="24"/>
         <image name="avatarIcon" width="680" height="487"/>
         <image name="back" width="36" height="36"/>
-        <image name="back2" width="36" height="36"/>
         <image name="homeIcon" width="36" height="36"/>
         <image name="locationButton" width="67" height="67"/>
         <image name="mapRepair" width="512" height="512"/>
@@ -1018,4 +1021,8 @@
         <image name="profileIcon" width="36" height="36"/>
         <image name="workShopIcon" width="36" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="eGa-BS-NDb"/>
+        <segue reference="V5s-je-R7K"/>
+    </inferredMetricsTieBreakers>
 </document>
