@@ -128,6 +128,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         performSegue(withIdentifier: "bodyPainitngService", sender: self)
     }
     
+    @IBAction func cartButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "cart", sender: self)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 

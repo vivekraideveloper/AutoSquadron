@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8029DA13218C5019000BEE07 /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029DA12218C5019000BEE07 /* CartVC.swift */; };
 		803BDBCF2189F2EA0049CF25 /* WorkshopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803BDBCE2189F2EA0049CF25 /* WorkshopModel.swift */; };
 		804E768421613923005B5133 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804E768321613922005B5133 /* GoogleService-Info.plist */; };
 		804E768621613A8C005B5133 /* HomeOfferLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E768521613A8C005B5133 /* HomeOfferLayout.swift */; };
@@ -21,6 +22,8 @@
 		807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807F68B621542DF600321617 /* CustomImageFlowLayout.swift */; };
 		80C894402185D32000BF6C36 /* HomeWorkshopsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C8943F2185D32000BF6C36 /* HomeWorkshopsVC.swift */; };
 		80C894422185DC9800BF6C36 /* HomeWorkshpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C894412185DC9800BF6C36 /* HomeWorkshpCell.swift */; };
+		80CE1030218CAADD00683FF8 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE102F218CAADD00683FF8 /* CartCell.swift */; };
+		80CE1058218D4CB300683FF8 /* CartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1057218D4CB300683FF8 /* CartData.swift */; };
 		80CE2FEE214D9BD6009B3F45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE2FED214D9BD6009B3F45 /* AppDelegate.swift */; };
 		80CE2FF0214D9BD6009B3F45 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE2FEF214D9BD6009B3F45 /* HomeVC.swift */; };
 		80CE2FF5214D9BD6009B3F45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CE2FF3214D9BD6009B3F45 /* Main.storyboard */; };
@@ -39,6 +42,7 @@
 /* Begin PBXFileReference section */
 		6BE15979805EC6397FF1F898 /* Pods-AutoSquadron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoSquadron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AutoSquadron/Pods-AutoSquadron.debug.xcconfig"; sourceTree = "<group>"; };
 		7D01ADF625B5DB22E5C727D3 /* Pods-AutoSquadron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoSquadron.release.xcconfig"; path = "Pods/Target Support Files/Pods-AutoSquadron/Pods-AutoSquadron.release.xcconfig"; sourceTree = "<group>"; };
+		8029DA12218C5019000BEE07 /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		803BDBCE2189F2EA0049CF25 /* WorkshopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopModel.swift; sourceTree = "<group>"; };
 		804E768321613922005B5133 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		804E768521613A8C005B5133 /* HomeOfferLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOfferLayout.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 		807F68B621542DF600321617 /* CustomImageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageFlowLayout.swift; sourceTree = "<group>"; };
 		80C8943F2185D32000BF6C36 /* HomeWorkshopsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkshopsVC.swift; sourceTree = "<group>"; };
 		80C894412185DC9800BF6C36 /* HomeWorkshpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkshpCell.swift; sourceTree = "<group>"; };
+		80CE102F218CAADD00683FF8 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
+		80CE1057218D4CB300683FF8 /* CartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartData.swift; sourceTree = "<group>"; };
 		80CE2FEA214D9BD5009B3F45 /* AutoSquadron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSquadron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CE2FED214D9BD6009B3F45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80CE2FEF214D9BD6009B3F45 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 				804E76DB21655561005B5133 /* WorkshopsLayout.swift */,
 				80FF1654216D0D8A004F14C0 /* HomeServiceLayout.swift */,
 				803BDBCE2189F2EA0049CF25 /* WorkshopModel.swift */,
+				80CE1057218D4CB300683FF8 /* CartData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +157,7 @@
 				80FF1652216D078C004F14C0 /* HomeServiceCell.swift */,
 				80FF1656216D3D56004F14C0 /* HomeBodyPaintingCell.swift */,
 				80C894412185DC9800BF6C36 /* HomeWorkshpCell.swift */,
+				80CE102F218CAADD00683FF8 /* CartCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 				804E76B12162E3AF005B5133 /* AccountVC.swift */,
 				80FF15F2216954D9004F14C0 /* WorkshopDetailVC.swift */,
 				80C8943F2185D32000BF6C36 /* HomeWorkshopsVC.swift */,
+				8029DA12218C5019000BEE07 /* CartVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -280,6 +289,8 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
@@ -291,6 +302,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
@@ -313,6 +326,7 @@
 				807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */,
 				804E768621613A8C005B5133 /* HomeOfferLayout.swift in Sources */,
 				80FF1653216D078C004F14C0 /* HomeServiceCell.swift in Sources */,
+				80CE1058218D4CB300683FF8 /* CartData.swift in Sources */,
 				80FF1655216D0D8A004F14C0 /* HomeServiceLayout.swift in Sources */,
 				80FF1651216A740C004F14C0 /* WorkshopDetailCell.swift in Sources */,
 				80C894422185DC9800BF6C36 /* HomeWorkshpCell.swift in Sources */,
@@ -320,6 +334,8 @@
 				80CE3005214DA658009B3F45 /* HomeView.swift in Sources */,
 				80FF1657216D3D56004F14C0 /* HomeBodyPaintingCell.swift in Sources */,
 				804E76DC21655561005B5133 /* WorkshopsLayout.swift in Sources */,
+				80CE1030218CAADD00683FF8 /* CartCell.swift in Sources */,
+				8029DA13218C5019000BEE07 /* CartVC.swift in Sources */,
 				80CE2FEE214D9BD6009B3F45 /* AppDelegate.swift in Sources */,
 				80CE2FF0214D9BD6009B3F45 /* HomeVC.swift in Sources */,
 				80FF15F3216954D9004F14C0 /* WorkshopDetailVC.swift in Sources */,

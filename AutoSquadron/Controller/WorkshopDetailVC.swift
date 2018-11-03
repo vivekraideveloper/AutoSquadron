@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SDWebImage
+import RealmSwift
 
 class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,7 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
     var _workshopName: String?  
     var serviceNameArray: [String] = []
     var servicePriceArray: [String] = []
+    let realm = try! Realm()
     
     @IBOutlet weak var workshopDetailTableView: UITableView!
     @IBOutlet weak var workshopName: UILabel!
@@ -55,6 +57,16 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
         scrollViewImages.delegate = self
     }
     
+    func saveCartData(data: CartData) {
+        do{
+           try realm.write {
+                realm.add(data)
+            }
+        }catch{
+            print("Error while saving data")
+        }
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = scrollViewImages.contentOffset.x/scrollViewImages.frame.size.width
         pageControl.currentPage = Int(pageNumber)
@@ -73,8 +85,22 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(serviceNameArray[(workshopDetailTableView.indexPathForSelectedRow?.row)!])
-        
+        let alertVC = UIAlertController(title: "Add this service to Cart?", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+           
+            let cartData = CartData()
+            cartData.serviceName = self.serviceNameArray[indexPath.row]
+            cartData.servicePrice = self.servicePriceArray[indexPath.row]
+            cartData.workshopName = self._workshopName ?? "VivekRai"
+            self.saveCartData(data: cartData)
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+        }
+    
+        alertVC.addAction(okAction)
+        alertVC.addAction(cancelAction)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     

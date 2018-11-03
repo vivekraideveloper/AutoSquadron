@@ -11,4 +11,5 @@ target 'AutoSquadron' do
     pod 'SDWebImage/WebP'
     pod 'EnhancedCircleImageView'
     pod 'Kingfisher'
+    pod 'RealmSwift'
 end
