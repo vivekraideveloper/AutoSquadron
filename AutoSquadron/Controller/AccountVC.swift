@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
+import SVProgressHUD
+import FBSDKLoginKit
 
 class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
     @IBOutlet weak var tableViewVC: UITableView!
     
+    let loginManager = FBSDKLoginManager()
     let imagesIcon = ["accountVehicles", "accountCard", "accountCart", "accountSettings", "accountHelp", "accountInvite", "accountAbout", "accountTerms", "accountLogOut"]
     let labelTexts = ["My Vehicles", "Saved cards", "My Cart", "Settings", "24x7 Help", "Invite", "About us", "Terms of service", "LogOut"]
 
@@ -20,8 +25,30 @@ class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         tableViewVC.delegate = self
         tableViewVC.dataSource = self
+        tableViewVC.allowsSelection = true
       
        
+    }
+    
+    func socialLogout(){
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        for info in (user.providerData){
+            switch info.providerID{
+            case GoogleAuthProviderID:
+                GIDSignIn.sharedInstance()?.signOut()
+                print("google")
+            case FacebookAuthProviderID:
+                loginManager.logOut()
+                print("Facebook")
+            case TwitterAuthProviderID:
+                print("Twitter")
+            default:
+                break
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,6 +63,40 @@ class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableViewVC.deselectRow(at: indexPath, animated: true)
+        
+        if labelTexts[indexPath.row] == "LogOut"{
+            let logoutPopUp = UIAlertController(title: "Logout", message: "Do you want to logout?", preferredStyle: .actionSheet)
+            let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
+                SVProgressHUD.show()
+                
+                do {
+                    self.socialLogout()
+                    try Auth.auth().signOut()
+                    print("SignOut Pressed")
+                    SVProgressHUD.dismiss(withDelay: 3, completion: {
+                        self.performSegue(withIdentifier: "logout", sender: self)
+                    })
+                    
+                } catch let err {
+                    print(err)
+                    SVProgressHUD.dismiss()
+                }
+                
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+            }
+            
+            logoutPopUp.addAction(logoutAction)
+            logoutPopUp.addAction(cancelAction)
+            present(logoutPopUp, animated: true, completion: nil)
+            
+        }
+    }
+    
 
    
 }

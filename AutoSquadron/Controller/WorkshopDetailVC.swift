@@ -101,6 +101,7 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
         alertVC.addAction(okAction)
         alertVC.addAction(cancelAction)
         self.present(alertVC, animated: true, completion: nil)
+        self.workshopDetailTableView.deselectRow(at: indexPath, animated: true)
     }
     
     

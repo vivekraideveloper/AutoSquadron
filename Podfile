@@ -7,9 +7,17 @@ target 'AutoSquadron' do
   # Pods for AutoSquadron
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKShareKit'
+    pod 'FBSDKLoginKit'
+    pod 'TwitterKit'
     pod 'Firebase/Database'
     pod 'SDWebImage/WebP'
     pod 'EnhancedCircleImageView'
     pod 'Kingfisher'
     pod 'RealmSwift'
+    pod 'SVProgressHUD'
+    pod 'SwipeCellKit', :git => 'https://github.com/SwipeCellKit/SwipeCellKit.git'
+    
 end

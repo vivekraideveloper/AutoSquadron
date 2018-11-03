@@ -19,7 +19,11 @@
 		804E76D821637E28005B5133 /* AccountCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E76D721637E28005B5133 /* AccountCellVC.swift */; };
 		804E76DA2164FF58005B5133 /* WorkShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E76D92164FF58005B5133 /* WorkShopCell.swift */; };
 		804E76DC21655561005B5133 /* WorkshopsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E76DB21655561005B5133 /* WorkshopsLayout.swift */; };
+		80749857218E38FC00A03099 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80749856218E38FC00A03099 /* LoginVC.swift */; };
 		807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807F68B621542DF600321617 /* CustomImageFlowLayout.swift */; };
+		8094A94F218DAEF40020CFDE /* SelectVehicleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094A94E218DAEF40020CFDE /* SelectVehicleCell.swift */; };
+		8094A951218DAF240020CFDE /* SelectVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094A950218DAF240020CFDE /* SelectVehicleVC.swift */; };
+		8094A953218DBB080020CFDE /* SelectVehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094A952218DBB080020CFDE /* SelectVehicleModel.swift */; };
 		80C894402185D32000BF6C36 /* HomeWorkshopsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C8943F2185D32000BF6C36 /* HomeWorkshopsVC.swift */; };
 		80C894422185DC9800BF6C36 /* HomeWorkshpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C894412185DC9800BF6C36 /* HomeWorkshpCell.swift */; };
 		80CE1030218CAADD00683FF8 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE102F218CAADD00683FF8 /* CartCell.swift */; };
@@ -54,7 +58,11 @@
 		804E76D721637E28005B5133 /* AccountCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCellVC.swift; sourceTree = "<group>"; };
 		804E76D92164FF58005B5133 /* WorkShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkShopCell.swift; sourceTree = "<group>"; };
 		804E76DB21655561005B5133 /* WorkshopsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsLayout.swift; sourceTree = "<group>"; };
+		80749856218E38FC00A03099 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		807F68B621542DF600321617 /* CustomImageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageFlowLayout.swift; sourceTree = "<group>"; };
+		8094A94E218DAEF40020CFDE /* SelectVehicleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVehicleCell.swift; sourceTree = "<group>"; };
+		8094A950218DAF240020CFDE /* SelectVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVehicleVC.swift; sourceTree = "<group>"; };
+		8094A952218DBB080020CFDE /* SelectVehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVehicleModel.swift; sourceTree = "<group>"; };
 		80C8943F2185D32000BF6C36 /* HomeWorkshopsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkshopsVC.swift; sourceTree = "<group>"; };
 		80C894412185DC9800BF6C36 /* HomeWorkshpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkshpCell.swift; sourceTree = "<group>"; };
 		80CE102F218CAADD00683FF8 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
@@ -140,6 +148,7 @@
 				80FF1654216D0D8A004F14C0 /* HomeServiceLayout.swift */,
 				803BDBCE2189F2EA0049CF25 /* WorkshopModel.swift */,
 				80CE1057218D4CB300683FF8 /* CartData.swift */,
+				8094A952218DBB080020CFDE /* SelectVehicleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -158,6 +167,7 @@
 				80FF1656216D3D56004F14C0 /* HomeBodyPaintingCell.swift */,
 				80C894412185DC9800BF6C36 /* HomeWorkshpCell.swift */,
 				80CE102F218CAADD00683FF8 /* CartCell.swift */,
+				8094A94E218DAEF40020CFDE /* SelectVehicleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -172,6 +182,8 @@
 				80FF15F2216954D9004F14C0 /* WorkshopDetailVC.swift */,
 				80C8943F2185D32000BF6C36 /* HomeWorkshopsVC.swift */,
 				8029DA12218C5019000BEE07 /* CartVC.swift */,
+				8094A950218DAF240020CFDE /* SelectVehicleVC.swift */,
+				80749856218E38FC00A03099 /* LoginVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,6 +209,7 @@
 				80CE2FE7214D9BD5009B3F45 /* Frameworks */,
 				80CE2FE8214D9BD5009B3F45 /* Resources */,
 				AE66C2D55FEFEA055F02287A /* [CP] Embed Pods Frameworks */,
+				22C08BCC5DDEAA3993C23A85 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,6 +273,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		22C08BCC5DDEAA3993C23A85 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AutoSquadron/Pods-AutoSquadron-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AutoSquadron/Pods-AutoSquadron-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8DA4BA3A3E455B7CAD139A5F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,26 +318,46 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AutoSquadron/Pods-AutoSquadron-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/EnhancedCircleImageView/EnhancedCircleImageView.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EnhancedCircleImageView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -323,11 +376,14 @@
 			files = (
 				804E76B22162E3AF005B5133 /* AccountVC.swift in Sources */,
 				80C894402185D32000BF6C36 /* HomeWorkshopsVC.swift in Sources */,
+				80749857218E38FC00A03099 /* LoginVC.swift in Sources */,
 				807F68B721542DF600321617 /* CustomImageFlowLayout.swift in Sources */,
+				8094A951218DAF240020CFDE /* SelectVehicleVC.swift in Sources */,
 				804E768621613A8C005B5133 /* HomeOfferLayout.swift in Sources */,
 				80FF1653216D078C004F14C0 /* HomeServiceCell.swift in Sources */,
 				80CE1058218D4CB300683FF8 /* CartData.swift in Sources */,
 				80FF1655216D0D8A004F14C0 /* HomeServiceLayout.swift in Sources */,
+				8094A953218DBB080020CFDE /* SelectVehicleModel.swift in Sources */,
 				80FF1651216A740C004F14C0 /* WorkshopDetailCell.swift in Sources */,
 				80C894422185DC9800BF6C36 /* HomeWorkshpCell.swift in Sources */,
 				804E7688216173CA005B5133 /* NearMeVC.swift in Sources */,
@@ -339,6 +395,7 @@
 				80CE2FEE214D9BD6009B3F45 /* AppDelegate.swift in Sources */,
 				80CE2FF0214D9BD6009B3F45 /* HomeVC.swift in Sources */,
 				80FF15F3216954D9004F14C0 /* WorkshopDetailVC.swift in Sources */,
+				8094A94F218DAEF40020CFDE /* SelectVehicleCell.swift in Sources */,
 				803BDBCF2189F2EA0049CF25 /* WorkshopModel.swift in Sources */,
 				804E76D821637E28005B5133 /* AccountCellVC.swift in Sources */,
 				804E76B0216249F2005B5133 /* ServiceAnnotationView.swift in Sources */,

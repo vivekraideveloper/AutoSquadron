@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -40,6 +41,9 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.serviceTypeName.text = data[indexPath.row].serviceName
         cell.servicePrice.text = "Rs \(data[indexPath.row].servicePrice)"
         cell.workshopName.text = data[indexPath.row].workshopName
+        
+//        let swipeCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SwipeTableViewCell
+//        swipeCell.delegate = self
         return cell
     }
     
@@ -54,6 +58,19 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             print("Error while deleting")
         }
         self.cartTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+        
+        return [deleteAction]
     }
     
     
