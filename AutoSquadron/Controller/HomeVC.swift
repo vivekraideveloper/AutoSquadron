@@ -249,10 +249,3 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
 
 
 
-
-
-
-
-
-
-

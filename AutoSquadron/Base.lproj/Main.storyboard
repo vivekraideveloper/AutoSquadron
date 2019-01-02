@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bQm-Aq-6bi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bQm-Aq-6bi">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,7 +40,7 @@
                                                 <color key="barTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-pV-Dap">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-pV-Dap">
                                                 <rect key="frame" x="0.0" y="56" width="414" height="160"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="160" id="Ydk-RH-fnx"/>
@@ -50,16 +50,16 @@
                                                 <rect key="frame" x="188" y="224" width="39" height="37"/>
                                             </pageControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-7o-tLF">
-                                                <rect key="frame" x="8" y="269" width="236.33333333333334" height="36"/>
+                                                <rect key="frame" x="8" y="269" width="308.33333333333331" height="108"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9v-z3-VBv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="190.33333333333334" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="190.33333333333334" height="108"/>
                                                         <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="25"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZz-nc-cKP">
-                                                        <rect key="frame" x="200.33333333333334" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="200.33333333333334" y="0.0" width="108.00000000000003" height="108"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="next"/>
                                                         <connections>
@@ -121,17 +121,17 @@
                                                 </cells>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="WB7-cA-cwV">
-                                                <rect key="frame" x="8" y="515" width="205" height="36"/>
+                                                <rect key="frame" x="8" y="515" width="277" height="108"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body Painting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFc-Ju-lfa">
-                                                        <rect key="frame" x="0.0" y="0.0" width="168" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="168" height="108"/>
                                                         <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="25"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7F-oe-DJ9">
-                                                        <rect key="frame" x="169" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="169" y="0.0" width="108" height="108"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="next"/>
                                                         <connections>
@@ -165,7 +165,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvr-t1-9wU">
-                                                                    <rect key="frame" x="0.0" y="154" width="194" height="22.333333333333343"/>
+                                                                    <rect key="frame" x="0.0" y="154" width="194" height="22.666666666666657"/>
                                                                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -234,17 +234,17 @@
                                                 </cells>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="myP-cC-VGC">
-                                                <rect key="frame" x="8" y="791" width="102.33333333333333" height="36"/>
+                                                <rect key="frame" x="8" y="791" width="174.33333333333334" height="108"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4h-Om-8kE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="108"/>
                                                         <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="25"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoU-R2-aRy">
-                                                        <rect key="frame" x="66.333333333333329" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="66.333333333333329" y="0.0" width="107.99999999999999" height="108"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="next"/>
                                                     </button>
@@ -293,17 +293,17 @@
                                                 </cells>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="GI3-VT-RdR">
-                                                <rect key="frame" x="8" y="1100" width="102.33333333333333" height="36"/>
+                                                <rect key="frame" x="8" y="1100" width="174.33333333333334" height="108"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhF-nD-yQ4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="108"/>
                                                         <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="25"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQ2-jb-hpG">
-                                                        <rect key="frame" x="66.333333333333329" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="66.333333333333329" y="0.0" width="107.99999999999999" height="108"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="next"/>
                                                     </button>
@@ -787,7 +787,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDj-Eq-TG7">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDj-Eq-TG7">
                                                 <rect key="frame" x="0.0" y="83.333333333333314" width="414" height="220"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="220" id="Krp-3u-Cvw"/>
@@ -820,13 +820,13 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfP-UV-Xrv">
-                                                                    <rect key="frame" x="294.66666666666669" y="1.9999999999999964" width="65.333333333333314" height="62.666666666666657"/>
+                                                                    <rect key="frame" x="246.66666666666666" y="1.9999999999999964" width="65.333333333333343" height="62.666666666666657"/>
                                                                     <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="22"/>
                                                                     <color key="textColor" red="1" green="0.91334224870000003" blue="0.53753992129999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOm-qI-6FG">
-                                                                    <rect key="frame" x="380" y="11.999999999999996" width="24" height="42.666666666666657"/>
+                                                                    <rect key="frame" x="332" y="11.999999999999996" width="72" height="42.666666666666657"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="accountAbout"/>
                                                                 </button>
@@ -853,7 +853,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bON-aj-va3">
-                                                <rect key="frame" x="8" y="24" width="36" height="36"/>
+                                                <rect key="frame" x="8" y="24" width="108" height="108"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="back"/>
                                                 <connections>
@@ -1351,20 +1351,20 @@
         </scene>
     </scenes>
     <resources>
-        <image name="accountAbout" width="24" height="24"/>
+        <image name="accountAbout" width="72" height="72"/>
         <image name="avatarIcon" width="680" height="487"/>
-        <image name="back" width="36" height="36"/>
-        <image name="back2" width="36" height="36"/>
-        <image name="cart" width="48" height="48"/>
-        <image name="homeIcon" width="36" height="36"/>
+        <image name="back" width="108" height="108"/>
+        <image name="back2" width="108" height="108"/>
+        <image name="cart" width="144" height="144"/>
+        <image name="homeIcon" width="108" height="108"/>
         <image name="locationButton" width="67" height="67"/>
         <image name="loginBackground" width="1366" height="768"/>
         <image name="mapRepair" width="512" height="512"/>
-        <image name="moreIcon" width="36" height="36"/>
-        <image name="nearMeIcon" width="36" height="36"/>
-        <image name="next" width="36" height="36"/>
-        <image name="profileIcon" width="36" height="36"/>
-        <image name="workShopIcon" width="36" height="36"/>
+        <image name="moreIcon" width="108" height="108"/>
+        <image name="nearMeIcon" width="108" height="108"/>
+        <image name="next" width="108" height="108"/>
+        <image name="profileIcon" width="108" height="108"/>
+        <image name="workShopIcon" width="108" height="108"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eGa-BS-NDb"/>
