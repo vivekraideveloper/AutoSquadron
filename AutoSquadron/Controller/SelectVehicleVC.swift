@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 class SelectVehicleVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -67,6 +68,23 @@ class SelectVehicleVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let myVehicle = MyVehicle()
+        myVehicle.defaults.setValue(self.vehicleArray[indexPath.row].name, forKey: "vehicleName")
+
+        
+        let alertVC = UIAlertController(title: "Your selected vehicle is ", message: myVehicle.defaults.string(forKey: "vehicleName")! , preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+        }
+
+        
+        alertVC.addAction(okAction)
+        alertVC.addAction(cancelAction)
+        self.present(alertVC, animated: true, completion: nil)
+    
+    
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -86,5 +104,4 @@ class SelectVehicleVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
         }
     }
-    
 }

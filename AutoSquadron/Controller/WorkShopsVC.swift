@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import SDWebImage
+import SVProgressHUD
 
 class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -18,6 +19,7 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.show()
         workshopTableView.delegate = self
         workshopTableView.dataSource = self
         workshopTableView.separatorStyle = .singleLine
@@ -35,7 +37,7 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     let img2 = dict["img2"] as! String
                     let img3 = dict["img3"] as! String
                     let shortDesc = dict["shortDesc"] as! String
-                    let services = dict["services"] as! Dictionary<String, String>
+                    let services = dict["services"] as! Dictionary<String, Dictionary<String, Any>>
                     let data = WorkshopModel(name: name, imageUrl: imageUrl, img1: img1, img2: img2, img3: img3, shortDesc: shortDesc, services: services)
                     self.workshopData.append(data)
                     self.workshopTableView.reloadData()
@@ -51,15 +53,26 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let cell = workshopTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WorkShopCell
         
         let data = workshopData[indexPath.row]
-        cell.imageView?.sd_setImage(with: URL(string: data.imageUrl))
+        //cell.imageView?.sd_setShowActivityIndicatorView(true)
+        
+       // cell.imageView?.sd_setIndicatorStyle(.white)
+         cell.imageView?.sd_setImage(with: URL(string: data.imageUrl), placeholderImage: UIImage(named: "placeholder"))
+        { (image:UIImage?, error: Error?, cacheType:SDImageCacheType!, imageURL: URL?) in
+
+            //new size
+            cell.imageView?.image = self.resizeImage(image: image!, newWidth: 150)
+        }
+//         cell.imageView?.sd_setImage(with: URL(string: data.imageUrl))
         cell.workshopName.text = data.name
         cell.workshopDesc.text = data.shortDesc
+        SVProgressHUD.dismiss()
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "workshop", sender: self)
+        
         self.workshopTableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -69,12 +82,38 @@ class WorkShopsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img1)
         destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img2)
         destinationVC.images.append(workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].img3)
-        
         for (key, value) in workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].services{
             destinationVC.serviceNameArray.append(key)
-            destinationVC.servicePriceArray.append(value)
+            for (iKey, iValue) in value{
+                print(iKey)
+                print(iValue)
+                if iKey == "price"{
+                    destinationVC.servicePriceArray.append(iValue as! String)
+                    
+                }
+                
+                if iKey == "details"{
+                    destinationVC.serviceDetailArray.append(iValue as! String)
+                }
+               
+                
+            }
         }
-            
+//        for (key, value) in workshopData[(workshopTableView.indexPathForSelectedRow?.row)!].services{
+//            destinationVC.serviceNameArray.append(key)
+//            destinationVC.servicePriceArray.append(value)
+//        }
+        
     }
-    
+        func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+            
+            let scale = newWidth / image.size.width
+            let newHeight = image.size.height * scale
+            UIGraphicsBeginImageContext(CGSize(width: newWidth, height: 100))
+            image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: 100))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return newImage!
+        }
 }

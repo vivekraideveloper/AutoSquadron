@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SDWebImage
+import SVProgressHUD
 
 class HomeVC: UIViewController, UIScrollViewDelegate {
     
@@ -44,7 +45,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SVProgressHUD.show()
         generalServiceDatabaseReference = Database.database().reference().child("genralServiceWorkshops")
         bodyPaintingDatabaseReference = Database.database().reference().child("bodyPaintingServiceWorkshops")
         
@@ -54,6 +55,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         pageControlSwipe()
         
         customLayout = CustomImageFlowLayout()
+        
+        
+        
     }
     
     func loadGeneralWorkshops() {
@@ -65,7 +69,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
                 let img2 = dict["img2"] as! String
                 let img3 = dict["img3"] as! String
                 let shortDesc = dict["shortDesc"] as! String
-                let services = dict["services"] as! Dictionary<String, String>
+                let services = dict["services"] as! Dictionary<String, Dictionary<String, Any>>
                 let data = WorkshopModel(name: name, imageUrl: imageUrl, img1: img1, img2: img2, img3: img3, shortDesc: shortDesc, services: services)
                 self.genralWorkshopArray.append(data)
                 self.generalServiceCollectionView.delegate = self
@@ -85,7 +89,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
                 let img2 = dict["img2"] as! String
                 let img3 = dict["img3"] as! String
                 let shortDesc = dict["shortDesc"] as! String
-                let services = dict["services"] as! Dictionary<String, String>
+                let services = dict["services"] as! Dictionary<String, Dictionary<String, Any>>
                 let data = WorkshopModel(name: name, imageUrl: imageUrl, img1: img1, img2: img2, img3: img3, shortDesc: shortDesc, services: services)
                 self.bodyPaintingWorkshopArray.append(data)
                 self.bodyPaintingCollectionView.delegate = self
@@ -153,10 +157,26 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             destinationVC.images.append(img1)
             destinationVC.images.append(img2)
             destinationVC.images.append(img3)
-            destinationVC.serviceNameArray = serviceName
-            destinationVC.servicePriceArray = servicePrice
+            
+            let iPath = self.generalServiceCollectionView.indexPathsForSelectedItems
+            let indexPath : NSIndexPath = iPath![0] as NSIndexPath
+            let rowIndex = indexPath.row
+            
+            for (key, value) in genralWorkshopArray[(rowIndex)].services{
+                destinationVC.serviceNameArray.append(key)
+                for (iKey, iValue) in value{
+                    print(iKey)
+                    print(iValue)
+                    if iKey == "price"{
+                        destinationVC.servicePriceArray.append(iValue as! String)
+                    }
 
+                    if iKey == "details"{
+                        destinationVC.serviceDetailArray.append(iValue as! String)
+                    }
+                }
         }
+    }
 
         if segue.identifier == "collectionBodyPainitngService"{
             let destinationVC = segue.destination as! WorkshopDetailVC
@@ -164,17 +184,28 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             destinationVC.images.append(img1)
             destinationVC.images.append(img2)
             destinationVC.images.append(img3)
-            destinationVC.serviceNameArray = serviceName
-            destinationVC.servicePriceArray = servicePrice
-
+            
+            let iPath = self.bodyPaintingCollectionView.indexPathsForSelectedItems
+            let indexPath : NSIndexPath = iPath![0] as NSIndexPath
+            let rowIndex = indexPath.row
+            
+            for (key, value) in bodyPaintingWorkshopArray[(rowIndex)].services{
+                destinationVC.serviceNameArray.append(key)
+                for (iKey, iValue) in value{
+                    print(iKey)
+                    print(iValue)
+                    if iKey == "price"{
+                        destinationVC.servicePriceArray.append(iValue as! String)
+                    }
+                    
+                    if iKey == "details"{
+                        destinationVC.serviceDetailArray.append(iValue as! String)
+                    }
+                }
+            }
         }
     }
-    
 }
-
-
-
-
 
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -199,6 +230,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
             let homeServiceCell = generalServiceCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeServiceCell
             homeServiceCell.serviceImage.sd_setImage(with: URL(string: genralWorkshopArray[indexPath.row].imageUrl))
             homeServiceCell.serviceStationName.text = genralWorkshopArray[indexPath.row].name
+            SVProgressHUD.dismiss() 
             return homeServiceCell
         }
         
@@ -206,6 +238,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
             let paintingServiceCell = bodyPaintingCollectionView.dequeueReusableCell(withReuseIdentifier:"bodyPaintingCell", for: indexPath) as! HomeBodyPaintingCell
             paintingServiceCell.serviceImage.sd_setImage(with: URL(string: bodyPaintingWorkshopArray[indexPath.row].imageUrl))
             paintingServiceCell.serviceStationName.text = bodyPaintingWorkshopArray[indexPath.row].name
+            SVProgressHUD.dismiss()
             return paintingServiceCell
         }
         
@@ -222,7 +255,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
             self.img3 = genralWorkshopArray[indexPath.row].img3
             for (key, value) in genralWorkshopArray[indexPath.row].services{
                 self.serviceName.append(key)
-                self.servicePrice.append(value)
+//                self.servicePrice.append(value)
             }
             performSegue(withIdentifier: "collectionGeneralService", sender: self)
             self.serviceName.removeAll()
@@ -236,7 +269,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource{
             self.img3 = bodyPaintingWorkshopArray[indexPath.row].img3
             for (key, value) in bodyPaintingWorkshopArray[indexPath.row].services{
                 self.serviceName.append(key)
-                self.servicePrice.append(value)
+//                self.servicePrice.append(value)
             }
             performSegue(withIdentifier: "collectionBodyPainitngService", sender: self)
             self.serviceName.removeAll()

@@ -18,6 +18,7 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
     var _workshopName: String?  
     var serviceNameArray: [String] = []
     var servicePriceArray: [String] = []
+    var serviceDetailArray: [String] = []
     let realm = try! Realm()
     
     @IBOutlet weak var workshopDetailTableView: UITableView!
@@ -33,6 +34,9 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
         pageControlSwipe()
         loadData()
         scrollViewImages.layer.cornerRadius = 10
+        
+        print(servicePriceArray)
+        print(serviceDetailArray)
     }
     
     func loadData(){
@@ -85,23 +89,27 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alertVC = UIAlertController(title: "Add this service to Cart?", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { action in
-           
-            let cartData = CartData()
-            cartData.serviceName = self.serviceNameArray[indexPath.row]
-            cartData.servicePrice = self.servicePriceArray[indexPath.row]
-            cartData.workshopName = self._workshopName ?? "VivekRai"
-            self.saveCartData(data: cartData)
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
-        }
-    
-        alertVC.addAction(okAction)
-        alertVC.addAction(cancelAction)
-        self.present(alertVC, animated: true, completion: nil)
-        self.workshopDetailTableView.deselectRow(at: indexPath, animated: true)
+//        let alertVC = UIAlertController(title: "Add this service to Cart?", message: nil, preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+//
+//            let cartData = CartData()
+//            cartData.serviceName = self.serviceNameArray[indexPath.row]
+//            cartData.servicePrice = self.servicePriceArray[indexPath.row]
+//            cartData.workshopName = self._workshopName ?? "VivekRai"
+//            self.saveCartData(data: cartData)
+//
+//        }
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+//        }
+//
+//        alertVC.addAction(okAction)
+//        alertVC.addAction(cancelAction)
+//        self.present(alertVC, animated: true, completion: nil)
+//        self.workshopDetailTableView.deselectRow(at: indexPath, animated: true)
+        
+        
+        performSegue(withIdentifier: "userDetail", sender: self)
+        
     }
     
     
@@ -116,4 +124,19 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
         dismiss(animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "userDetail"{
+            let destinationVC = segue.destination as! UserServiceDetailVC
+            destinationVC.serviceNameText = serviceNameArray[(workshopDetailTableView.indexPathForSelectedRow?.row)!]
+            destinationVC.serviceStationNameText = _workshopName
+            destinationVC.servicePriceText = "Total Price - Rs" + servicePriceArray[(workshopDetailTableView.indexPathForSelectedRow?.row)!]
+            destinationVC.serviceDetailText = serviceDetailArray[(workshopDetailTableView.indexPathForSelectedRow?.row)!]
+        
+//            destinationVC.images.append(img1)
+//            destinationVC.images.append(img2)
+//            destinationVC.images.append(img3)
+//            destinationVC.serviceNameArray = serviceName
+//            destinationVC.servicePriceArray = servicePrice
+        }
+    }
 }

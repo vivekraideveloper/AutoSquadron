@@ -11,24 +11,26 @@ import Firebase
 import GoogleSignIn
 import SVProgressHUD
 import FBSDKLoginKit
+import RealmSwift
 
 class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
     @IBOutlet weak var tableViewVC: UITableView!
     
     let loginManager = FBSDKLoginManager()
-    let imagesIcon = ["accountVehicles", "accountCard", "accountCart", "accountSettings", "accountHelp", "accountInvite", "accountAbout", "accountTerms", "accountLogOut"]
-    let labelTexts = ["My Vehicles", "Saved cards", "My Cart", "Settings", "24x7 Help", "Invite", "About us", "Terms of service", "LogOut"]
-
+    let imagesIcon = ["accountVehicles", "accountCard", "accountCart", "accountSettings", "accountHelp", "accountShare", "accountAbout", "accountTerms", "accountLogOut"]
+    let labelTexts = ["My Vehicles", "My Address", "My Cart", "Settings", "24x7 Help", "Share", "About us", "Terms of service", "LogOut"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableViewVC.delegate = self
         tableViewVC.dataSource = self
         tableViewVC.allowsSelection = true
-      
        
     }
+    
     
     func socialLogout(){
         guard let user = Auth.auth().currentUser else {
@@ -95,8 +97,56 @@ class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             present(logoutPopUp, animated: true, completion: nil)
             
         }
+        
+        if labelTexts[indexPath.row] == "My Cart"{
+            performSegue(withIdentifier: "MyCart", sender: self)
+        }
+        
+        if labelTexts[indexPath.row] == "My Vehicles"{
+            let myVehicle = MyVehicle()
+            
+            let alertVC = UIAlertController(title: "Your selected vehicle is ", message: myVehicle.defaults.string(forKey: "vehicleName") ?? "No Vehicle", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Edit", style: .default) { action in
+                        
+                        self.performSegue(withIdentifier: "MyVehicle", sender: self)
+            
+                    }
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                    }
+            
+                    alertVC.addAction(okAction)
+                    alertVC.addAction(cancelAction)
+                    self.present(alertVC, animated: true, completion: nil)
+                    self.tableViewVC.deselectRow(at: indexPath, animated: true)
+        }
+        
+        
+        if labelTexts[indexPath.row] == "My Address"{
+            let alertVC = UIAlertController(title: "Enter your Addess", message: nil, preferredStyle: .alert)
+            
+            alertVC.addTextField { textField in
+                
+            }
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+                
+                if let textField = alertVC.textFields?.first,
+                    let address = textField.text {
+                    
+                        let myAddress = MyAddress()
+                        myAddress.defaults.setValue(address, forKey: "address")
+                                        
+                }
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                
+            }
+            
+            alertVC.addAction(okAction)
+            alertVC.addAction(cancelAction)
+            
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
-    
-
-   
 }
