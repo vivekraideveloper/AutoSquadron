@@ -40,7 +40,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     var servicePrice = [String]()
     
     
-    var images = ["1", "2","3"]
+    var images = ["placeholder", "placeholder","placeholder"]
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     override func viewDidLoad() {
