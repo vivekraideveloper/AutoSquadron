@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SDWebImage
 import RealmSwift
+import ImageSlideshow
 
 class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,9 +22,9 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
     var serviceDetailArray: [String] = []
     let realm = try! Realm()
     
+    @IBOutlet weak var slideShow: ImageSlideshow!
     @IBOutlet weak var workshopDetailTableView: UITableView!
     @IBOutlet weak var workshopName: UILabel!
-    @IBOutlet weak var scrollViewImages: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
@@ -33,7 +34,10 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
         workshopDetailTableView.dataSource = self
         pageControlSwipe()
         loadData()
-        scrollViewImages.layer.cornerRadius = 10
+        print("***************************************")
+        print(images[0])
+        print(images[1])
+        print(images[2])
         
         print(servicePriceArray)
         print(serviceDetailArray)
@@ -45,20 +49,34 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
     
     func pageControlSwipe() {
         
-        pageControl.numberOfPages = images.count
+        slideShow.layer.cornerRadius = 5
+        slideShow.setImageInputs([
+            SDWebImageSource(urlString: images[0], placeholder: UIImage(named: "5")!)!,
+            SDWebImageSource(urlString: images[1], placeholder: UIImage(named: "5")!)!,
+            SDWebImageSource(urlString: images[2], placeholder: UIImage(named: "5")!)!
+
+            ])
         
-        for index in 0..<images.count{
-            
-            frame.origin.x = scrollViewImages.frame.size.width*CGFloat(index)
-            frame.size = scrollViewImages.frame.size
-            let imageView = UIImageView(frame: frame)
-            imageView.sd_setImage(with: URL(string: images[index]))
-            self.scrollViewImages.addSubview(imageView)
-            
-        }
         
-        scrollViewImages.contentSize = CGSize(width: scrollViewImages.frame.size.width*CGFloat(images.count), height: scrollViewImages.frame.size.height)
-        scrollViewImages.delegate = self
+        pageControl.currentPageIndicatorTintColor = UIColor.gray
+        pageControl.pageIndicatorTintColor = UIColor.white
+        slideShow.pageIndicator = pageControl
+        slideShow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 5))
+        
+//        pageControl.numberOfPages = images.count
+//
+//        for index in 0..<images.count{
+//
+//            frame.origin.x = scrollViewImages.frame.size.width*CGFloat(index)
+//            frame.size = scrollViewImages.frame.size
+//            let imageView = UIImageView(frame: frame)
+//            imageView.sd_setImage(with: URL(string: images[index]))
+//            self.scrollViewImages.addSubview(imageView)
+//
+//        }
+//
+//        scrollViewImages.contentSize = CGSize(width: scrollViewImages.frame.size.width*CGFloat(images.count), height: scrollViewImages.frame.size.height)
+//        scrollViewImages.delegate = self
     }
     
     func saveCartData(data: CartData) {
@@ -71,10 +89,10 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageNumber = scrollViewImages.contentOffset.x/scrollViewImages.frame.size.width
-        pageControl.currentPage = Int(pageNumber)
-    }
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        let pageNumber = scrollViewImages.contentOffset.x/scrollViewImages.frame.size.width
+//        pageControl.currentPage = Int(pageNumber)
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serviceNameArray.count
@@ -83,7 +101,7 @@ class WorkshopDetailVC: UIViewController, UIScrollViewDelegate, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WorkshopDetailCell
         cell.serviceName.text = serviceNameArray[indexPath.row]
-        cell.servicePrice.text = "Rs " + servicePriceArray[indexPath.row]
+        cell.servicePrice.text = "Rs" + servicePriceArray[indexPath.row]
         cell.infoButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
         return cell 
     }

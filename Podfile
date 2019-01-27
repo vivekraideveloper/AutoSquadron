@@ -19,6 +19,7 @@ target 'AutoSquadron' do
     pod 'RealmSwift'
     pod 'SVProgressHUD'
     pod 'ImageSlideshow'
+    pod 'ImageSlideshow/SDWebImage'
     pod 'SwipeCellKit', :git => 'https://github.com/SwipeCellKit/SwipeCellKit.git'
     
 end
