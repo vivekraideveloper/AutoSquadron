@@ -85,6 +85,9 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
+  - ImageSlideshow (1.7.0):
+    - ImageSlideshow/Core (= 1.7.0)
+  - ImageSlideshow/Core (1.7.0)
   - Kingfisher (4.10.1)
   - leveldb-library (1.20)
   - libwebp (0.6.1):
@@ -140,6 +143,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - GoogleSignIn
+  - ImageSlideshow
   - Kingfisher
   - RealmSwift
   - SDWebImage/WebP
@@ -166,6 +170,7 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
+    - ImageSlideshow
     - Kingfisher
     - leveldb-library
     - libwebp
@@ -204,6 +209,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  ImageSlideshow: f8eec5e37a980f60923b585ff23b0e140fd24018
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
@@ -216,6 +222,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 27c380394b69c602b6e80cb6ffe405c5a062e7ff
+PODFILE CHECKSUM: c66f0968466de8cbe95e43e0890b5c78a52fb1cb
 
 COCOAPODS: 1.5.3

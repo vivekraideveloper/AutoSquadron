@@ -12,14 +12,15 @@ import FirebaseAuth
 import FirebaseDatabase
 import SDWebImage
 import SVProgressHUD
+import ImageSlideshow
 
-class HomeVC: UIViewController, UIScrollViewDelegate {
+class HomeVC: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var slideShow: ImageSlideshow!
+    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var generalServiceCollectionView: UICollectionView!
     @IBOutlet weak var bodyPaintingCollectionView: UICollectionView!
-    @IBOutlet weak var pageControl: UIPageControl!
-    
+   
     var homeServiceItemArray = [WorkshopsLayout]()
     var customLayout: CustomImageFlowLayout!
     var collectionImages = [HomeOfferLayout]()
@@ -102,27 +103,24 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     
     func pageControlSwipe() {
-        scrollView.layer.cornerRadius = 10
-        pageControl.numberOfPages = images.count
+        slideShow.layer.cornerRadius = 5
+        slideShow.setImageInputs([
+            ImageSource(image: UIImage(named: "1")!),
+            ImageSource(image: UIImage(named: "2")!),
+            ImageSource(image: UIImage(named: "3")!),
+            ImageSource(image: UIImage(named: "4")!),
+            ImageSource(image: UIImage(named: "5")!),
+            ImageSource(image: UIImage(named: "6")!),
+            ImageSource(image: UIImage(named: "7")!)
+            ])
         
-        for index in 0..<images.count{
-            
-            frame.origin.x = scrollView.frame.size.width*CGFloat(index)
-            frame.size = scrollView.frame.size
-            let imageView = UIImageView(frame: frame)
-            imageView.image = UIImage(named: images[index])
-            self.scrollView.addSubview(imageView)
-            
-        }
-        
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width*CGFloat(images.count), height: scrollView.frame.size.height)
-        scrollView.delegate = self
+        pageControl.currentPageIndicatorTintColor = UIColor.gray
+        pageControl.pageIndicatorTintColor = UIColor.white
+        slideShow.pageIndicator = pageControl
+        slideShow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 5))
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageNumber = scrollView.contentOffset.x/scrollView.frame.size.width
-        pageControl.currentPage = Int(pageNumber)
-    }
+   
     
     @IBAction func generalServiceButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "generalService", sender: self)
