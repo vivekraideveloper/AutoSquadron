@@ -10,13 +10,18 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import FBSDKLoginKit
+import SVProgressHUD
 
 class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
+    @IBOutlet weak var googleButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var emailSignInButton: UIButton!
     
     let loginManager = FBSDKLoginManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
         
         GIDSignIn.sharedInstance()?.uiDelegate = self
         
@@ -31,10 +36,18 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
         }
     }
     
+    func configureView(){
+        googleButton.layer.cornerRadius = 8
+        facebookButton.layer.cornerRadius = 8
+        emailSignInButton.layer.cornerRadius = 8
+    }
+    
 //    Google SignIn
 
     @IBAction func googleSignInButton(_ sender: Any) {
+        
         GIDSignIn.sharedInstance()?.signIn()
+       
     }
     
 //    Facebook SignIn
@@ -43,7 +56,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
         loginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             
             if let error  = error{
-                debugPrint("Error ocurred while Login: \(error)")
+                debugPrint("***********************************Error ocurred while Login: \(error)")
             }else if (result?.isCancelled)!{
                 print("FB Login was cancelled")
             }else{
@@ -78,7 +91,14 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
                 print("Error occured \(error.localizedDescription)")
                 return
             }
+            
         }
+    }
+    
+//    Email SignIn
+    
+    @IBAction func signInButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "emailSignIn", sender: self)
     }
     
 }

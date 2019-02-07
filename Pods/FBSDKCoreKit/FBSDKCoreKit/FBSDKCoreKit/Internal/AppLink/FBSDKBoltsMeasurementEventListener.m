@@ -21,16 +21,7 @@
 #import "FBSDKAppEvents+Internal.h"
 #import "FBSDKTimeSpentData.h"
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-
-static NSNotificationName const BoltsMeasurementEventNotification = @"com.parse.bolts.measurement_event";
-
-#else
-
-static NSString *const BoltsMeasurementEventNotification = @"com.parse.bolts.measurement_event";
-
-#endif
-
+static NSString *const BoltsMeasurementEventNotificationName = @"com.parse.bolts.measurement_event";
 static NSString *const BoltsMeasurementEventName = @"event_name";
 static NSString *const BoltsMeasurementEventArgs = @"event_args";
 static NSString *const BoltsMeasurementEventPrefix = @"bf_";
@@ -46,7 +37,7 @@ static NSString *const BoltsMeasurementEventPrefix = @"bf_";
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:defaultListener
                    selector:@selector(logFBAppEventForNotification:)
-                       name:BoltsMeasurementEventNotification
+                       name:BoltsMeasurementEventNotificationName
                      object:nil];
     });
     return defaultListener;
@@ -68,7 +59,7 @@ static NSString *const BoltsMeasurementEventPrefix = @"bf_";
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^0-9a-zA-Z _-]" options:0 error:&error];
         NSString *safeKey = [regex stringByReplacingMatchesInString:key
                                                             options:0
-                                                              range:NSMakeRange(0, key.length)
+                                                              range:NSMakeRange(0, [key length])
                                                        withTemplate:@"-"];
         safeKey = [safeKey stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" -"]];
         logData[safeKey] = eventArgs[key];

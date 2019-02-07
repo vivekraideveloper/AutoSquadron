@@ -14,12 +14,15 @@ import FBSDKLoginKit
 import RealmSwift
 
 class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-   
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var mobileNumberLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var tableViewVC: UITableView!
     
     let loginManager = FBSDKLoginManager()
-    let imagesIcon = ["accountVehicles", "accountCard", "accountCart", "accountSettings", "accountHelp", "accountShare", "accountAbout", "accountTerms", "accountLogOut"]
-    let labelTexts = ["My Vehicles", "My Address", "My Cart", "Settings", "24x7 Help", "Share", "About us", "Terms of service", "LogOut"]
+    let imagesIcon = ["phone", "email2", "accountVehicles", "accountCard", "accountCart", "accountShare", "accountAbout", "accountTerms", "accountLogOut"]
+    let labelTexts = ["Mobile Number", "E-mail", "My Vehicles", "My Address", "My Cart", "Share", "About us", "Terms of service", "LogOut"]
     
     
     override func viewDidLoad() {
@@ -28,7 +31,20 @@ class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         tableViewVC.delegate = self
         tableViewVC.dataSource = self
         tableViewVC.allowsSelection = true
+        userDetail()
        
+    }
+    
+    func userDetail(){
+        guard let name = Auth.auth().currentUser?.displayName else {return}
+        nameLabel.text = name
+        
+        guard let email = Auth.auth().currentUser?.email else {
+            emailLabel.text = "No Email setup"
+            return
+            
+        }
+        emailLabel.text = email
     }
     
     
@@ -69,6 +85,10 @@ class AccountVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableViewVC.deselectRow(at: indexPath, animated: true)
+        
+        if labelTexts[indexPath.row] == "Mobile Number"{
+            performSegue(withIdentifier: "phoneAuth", sender: self)
+        }
         
         if labelTexts[indexPath.row] == "LogOut"{
             let logoutPopUp = UIAlertController(title: "Logout", message: "Do you want to logout?", preferredStyle: .actionSheet)

@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import SwipeCellKit
+import Firebase
 
 class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -25,6 +26,14 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cartTableView.dataSource = self
         
         loadData()
+        userName()
+    }
+    
+    func userName(){
+        guard let name = Auth.auth().currentUser?.displayName else {
+            return
+        }
+        userInfoLabel.text = " Welcome " + name
     }
     
     func loadData() {

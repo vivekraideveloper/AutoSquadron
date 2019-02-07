@@ -46,6 +46,7 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         SVProgressHUD.show()
         generalServiceDatabaseReference = Database.database().reference().child("genralServiceWorkshops")
         bodyPaintingDatabaseReference = Database.database().reference().child("bodyPaintingServiceWorkshops")
@@ -57,9 +58,9 @@ class HomeVC: UIViewController {
         
         customLayout = CustomImageFlowLayout()
         
-        
-        
     }
+    
+    
     
     func loadGeneralWorkshops() {
         generalServiceDatabaseReference.observe(DataEventType.childAdded, with: { (snapshot) in
@@ -104,19 +105,21 @@ class HomeVC: UIViewController {
     
     func pageControlSwipe() {
         slideShow.layer.cornerRadius = 5
+        
         slideShow.setImageInputs([
-            ImageSource(image: UIImage(named: "1")!),
             ImageSource(image: UIImage(named: "2")!),
             ImageSource(image: UIImage(named: "3")!),
+            ImageSource(image: UIImage(named: "swipeControl1")!),
             ImageSource(image: UIImage(named: "4")!),
             ImageSource(image: UIImage(named: "5")!),
             ImageSource(image: UIImage(named: "6")!),
             ImageSource(image: UIImage(named: "7")!)
             ])
-        
+
         pageControl.currentPageIndicatorTintColor = UIColor.gray
         pageControl.pageIndicatorTintColor = UIColor.white
         slideShow.pageIndicator = pageControl
+        slideShow.contentScaleMode = .scaleAspectFill
         slideShow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 5))
     }
     
